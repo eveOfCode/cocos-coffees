@@ -1,5 +1,51 @@
-<p>product-list works!</p>
-<p>asdjflkaj</p>
-<div *ngFor="let item of allCoffeeProducts$ | async">
-  {{ item.blend_name }}
+<h1>Coco's Coffee Distribution Co.</h1>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let coffee">{{ coffee.id }}</td>
+    </ng-container>
+
+    <!-- Blend Name Column -->
+    <ng-container matColumnDef="blend_name">
+      <th mat-header-cell *matHeaderCellDef>Blend Name</th>
+      <td mat-cell *matCellDef="let coffee">{{ coffee.blend_name }}</td>
+    </ng-container>
+
+    <!-- Origin Column -->
+    <ng-container matColumnDef="origin">
+      <th mat-header-cell *matHeaderCellDef>Origin</th>
+      <td mat-cell *matCellDef="let coffee">{{ coffee.origin }}</td>
+    </ng-container>
+
+    <!-- Variety Column -->
+    <ng-container matColumnDef="variety">
+      <th mat-header-cell *matHeaderCellDef>Variety</th>
+      <td mat-cell *matCellDef="let coffee">{{ coffee.variety }}</td>
+    </ng-container>
+
+    <!-- Intensifier Column -->
+    <ng-container matColumnDef="intensifier">
+      <th mat-header-cell *matHeaderCellDef>Intensifier</th>
+      <td mat-cell *matCellDef="let coffee">{{ coffee.intensifier }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <!-- Pagination for the table -->
+  <!-- <mat-paginator
+    [pageSizeOptions]="pageSizeOptions"
+    [pageSize]="pageSize"
+    [length]="length"
+    showFirstLastButtons
+    aria-label="Select page of periodic coffees"
+  >
+  </mat-paginator> -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
 </div>
