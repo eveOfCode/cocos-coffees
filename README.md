@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Project Base Requirements
 - [x] Data should be managed via the NgRx Store 
 - [x] HTTP requests should be dispatched via NgRx Effects 
-- [] While you are encouraged to implement unit tests, please do so as you feel necessary. There are *_NO_* code coverage requirements. 
+- [ ] While you are encouraged to implement unit tests, please do so as you feel necessary. There are *_NO_* code coverage requirements. 
 - [x] Please spend some time on styling, it does not need to be perfect, but should look presentable 
 - [x] The layout should be responsive and have mobile and desktop breakpoints 
 - [x] You are able to leverage any UI Framework you prefer, if so please. 
@@ -18,7 +18,7 @@ Using your knowledge, add the following page
 
 ### Bonus Challenges
 - [x] leverage NgRx Selectors for retrieving data from the Store
-- [] Leverage OnPush ChangeDetection for each of your components
+- [ ] Leverage OnPush ChangeDetection for each of your components
 - [x] Add a product details page
 
 - [x] Added footer with my name
