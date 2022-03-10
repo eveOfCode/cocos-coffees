@@ -1,5 +1,44 @@
+html, body {
+  height: 100%;
+  --color-primary: #8E6552;
+  --color-secondary: #B2675E;
+  --color-background: #8E6552;
+  scroll-behavior: smooth;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-table { width: 100% }
+.c-primary {
+  color: var(--color-primary);
+}
+
+.c-secondary {
+  color: var(--color-secondary);
+}
+
+.bc-primary {
+  background-color: var(--color-primary);
+}
+
+.bc-secondary {
+  background-color: var(--color-secondary);
+}
+
+.mat-table {
+  background-color: var(--color-background) !important;
+}
+
+.mat-paginator {
+  background-color: var(--color-background) !important;
+}
+
+.mat-card {
+  background-color: var(--color-background) !important;
+}
+
+.mat-card-title .mat-card-subtitle {
+  color: black;
+}

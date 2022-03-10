@@ -1,13 +1,16 @@
 <div class="container">
+  <!-- Hero Section -->
   <div>
     <h1>Coco's Coffee Distribution Co.</h1>
     <p style="max-width: 450px">
       Scroll down to explore all the coffee the world has to offer. Interested
       to see more about a certain coffee? Click on a coffee item to learn more!
     </p>
-    <button mat-raised-button color="primary">Coffee Please</button>
+    <a href="/product-list#table">
+      <button mat-raised-button class="bc-primary">Coffee Please</button>
+    </a>
   </div>
-  <div>
+  <div *ngIf="!hideHeroImage">
     <div class="hero-image-container">
       <img
         src="/assets/Coffee Makes Everything Better SVG Cut File.png"
@@ -21,54 +24,58 @@
 </div>
 
 <!-- Table of coffee products -->
-<!-- <div class="table-container">
-  <h2>Browse Through our Coffee Products</h2> -->
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let coffee">{{ coffee.id }}</td>
-    </ng-container>
+<div class="table-container" id="table">
+  <h2>Browse Through our Coffee Products</h2>
+  <div class="data-table">
+    <table mat-table [dataSource]="dataSource">
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let coffee">{{ coffee.id }}</td>
+      </ng-container>
 
-    <!-- Blend Name Column -->
-    <ng-container matColumnDef="blend_name">
-      <th mat-header-cell *matHeaderCellDef>Blend Name</th>
-      <td mat-cell *matCellDef="let coffee">{{ coffee.blend_name }}</td>
-    </ng-container>
+      <!-- Blend Name Column -->
+      <ng-container matColumnDef="blend_name">
+        <th mat-header-cell *matHeaderCellDef>Blend Name</th>
+        <td mat-cell *matCellDef="let coffee">{{ coffee.blend_name }}</td>
+      </ng-container>
 
-    <!-- Origin Column -->
-    <ng-container matColumnDef="origin">
-      <th mat-header-cell *matHeaderCellDef>Origin</th>
-      <td mat-cell *matCellDef="let coffee">{{ coffee.origin }}</td>
-    </ng-container>
+      <!-- Origin Column -->
+      <ng-container matColumnDef="origin">
+        <th mat-header-cell *matHeaderCellDef>Origin</th>
+        <td mat-cell *matCellDef="let coffee">{{ coffee.origin }}</td>
+      </ng-container>
 
-    <!-- Variety Column -->
-    <ng-container matColumnDef="variety">
-      <th mat-header-cell *matHeaderCellDef>Variety</th>
-      <td mat-cell *matCellDef="let coffee">{{ coffee.variety }}</td>
-    </ng-container>
+      <!-- Variety Column -->
+      <ng-container matColumnDef="variety">
+        <th mat-header-cell *matHeaderCellDef>Variety</th>
+        <td mat-cell *matCellDef="let coffee">{{ coffee.variety }}</td>
+      </ng-container>
 
-    <!-- Intensifier Column -->
-    <ng-container matColumnDef="intensifier">
-      <th mat-header-cell *matHeaderCellDef>Intensifier</th>
-      <td mat-cell *matCellDef="let coffee">{{ coffee.intensifier }}</td>
-    </ng-container>
+      <!-- Intensifier Column -->
+      <ng-container matColumnDef="intensifier">
+        <th mat-header-cell *matHeaderCellDef>Intensifier</th>
+        <td mat-cell *matCellDef="let coffee">{{ coffee.intensifier }}</td>
+      </ng-container>
 
-    <!-- Product Detail Button Column -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>Actions</th>
-      <td mat-cell *matCellDef="let coffee">
-        <button mat-button [routerLink]="['/product', coffee.id]">
-          View Details
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    <app-product [coffeeProductId]="selectedCoffeeId"></app-product>
-  </table>
+      <!-- Product Detail Button Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let coffee">
+          <button
+            mat-stroked-button
+            class="bc-secondary"
+            [routerLink]="['/product', coffee.id]"
+          >
+            View Details
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <app-product [coffeeProductId]="selectedCoffeeId"></app-product>
+    </table>
+  </div>
   <!-- Pagination for the table -->
   <mat-paginator
     [pageSizeOptions]="pageSizeOptions"

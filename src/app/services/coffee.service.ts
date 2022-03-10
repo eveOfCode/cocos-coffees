@@ -11,6 +11,9 @@ export class CoffeeService {
   constructor(private http: HttpClient) { }
 
   getCoffeeProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>("https://random-data-api.com/api/coffee/random_coffee?size=50");
+    const sizeOfData = 50;
+    const url = `https://random-data-api.com/api/coffee/random_coffee?size=${sizeOfData}`;
+    return this.http.get<Product[]>(url);
+
   }
 }

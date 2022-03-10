@@ -1,12 +1,7 @@
-.example-card {
-  max-width: 400px;
-}
-
 .product-detail-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* max-width: 400px; */
   height: 100%;
-  margin: auto;
+  margin: 1.5em;
 }

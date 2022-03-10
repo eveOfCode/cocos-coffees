@@ -9,24 +9,16 @@
 
 .container > div {
   max-width: 50em;
+  margin: 0 40px 0 40px;
 }
 
 .hero-image-container {
-  /* max-width: 700px; */
-  /* min-width: 400px; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
     "image-1 ."
     ". image-2";
-}
-
-.table-container {
-  /* display: flex;
-  flex-direction: column; */
-  margin-bottom: 100px;
-  margin: 1.25rem 1.25rem 2rem 1.25rem;
 }
 
 .image-1{
@@ -41,8 +33,32 @@
   width:100%;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 10px;
+.data-table {
+  overflow-x: scroll;
 }
+
+.table-container {
+  margin: 1.25em;
+}
+
+table {
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+}
+
+th, td {min-width: 200px; width: auto }
+
+.mat-header-cell {
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 64px;
+  letter-spacing: .05em;
+  line-height: 80px;
+}
+
+
+

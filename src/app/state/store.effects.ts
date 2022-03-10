@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { from } from 'rxjs';
-import { map, mergeMap, switchMap} from 'rxjs/operators';
-import { CoffeeService } from '../services/coffee.service';
-import { loadProductsSuccess, loadProducts } from './store.actions'
+import { from, of } from 'rxjs';
+import { map, mergeMap, catchError} from 'rxjs/operators';
 
+import { CoffeeService } from '../services/coffee.service';
+import { loadProductsSuccess, loadProducts, loadProductsFailure } from './store.actions'
 
 @Injectable()
 export class StoreEffects {
@@ -12,7 +12,8 @@ export class StoreEffects {
     ofType(loadProducts),
     mergeMap(() =>
       from(this.coffeeService.getCoffeeProducts()).pipe(
-        map((products: any) => loadProductsSuccess({  products }))
+        map((products: any) => loadProductsSuccess({  products })),
+        catchError((error) => of(loadProductsFailure({ error: error })))
       )
     )
 

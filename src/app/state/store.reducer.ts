@@ -1,18 +1,20 @@
 import { createReducer, on } from "@ngrx/store";
 import { Product } from "../product.model";
-import { loadProducts, loadProductsSuccess, getCoffeeDetails } from "./store.actions";
+import { loadProducts, loadProductsSuccess, loadProductsFailure } from "./store.actions";
 
 export interface StoreState {
   products: Product[];
+  error: string;
 }
 
 export const initialState: StoreState = {
   products: [],
+  error: null,
 }
 
 export const storeReducer = createReducer(
   initialState,
-  on(loadProducts, (state) => ({...state})),
-  on(loadProductsSuccess, (state, { products }) => ({...state, products})),
-  on(getCoffeeDetails, (state, { productId }) => ({...state, products: state.products.map(product => product.id === productId ? {...product, showDetails: true} : product)})),
+  on(loadProducts, (state) => ({ ...state })),
+  on(loadProductsSuccess, (state, { products }) => ({ ...state, products })),
+  on(loadProductsFailure, (state, { error }) => ({ ...state, error }))
 );
