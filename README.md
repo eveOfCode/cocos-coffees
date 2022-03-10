@@ -3,26 +3,25 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 
 ## Project Base Requirements
-[x] Data should be managed via the NgRx Store
-[x] HTTP requests should be dispatched via NgRx Effects
-[] While you are encouraged to implement unit tests, please do so as you feel necessary. There are *_NO_* code coverage requirements.
-[x] Please spend some time on styling, it does not need to be perfect, but should look presentable
-[x] The layout should be responsive and have mobile and desktop breakpoints
-[x] You are able to leverage any UI Framework you prefer, if so please.
+- [x] Data should be managed via the NgRx Store 
+- [x] HTTP requests should be dispatched via NgRx Effects 
+- [] While you are encouraged to implement unit tests, please do so as you feel necessary. There are *_NO_* code coverage requirements. 
+- [x] Please spend some time on styling, it does not need to be perfect, but should look presentable 
+- [x] The layout should be responsive and have mobile and desktop breakpoints 
+- [x] You are able to leverage any UI Framework you prefer, if so please. 
 
 Using your knowledge, add the following page
 
 ### Create a Product List Page
-
-[x] Retrieve a list of 50 coffees items from https://random-data-api.com/api/coffee/random_coffee endpoint
-[x] Implement pagination, with a limit of 10 items per page
+- [x] Retrieve a list of 50 coffees items from https://random-data-api.com/api/coffee/random_coffee endpoint
+- [x] Implement pagination, with a limit of 10 items per page
 
 ### Bonus Challenges
-[x] leverage NgRx Selectors for retrieving data from the Store
-[] Leverage OnPush ChangeDetection for each of your components
-[x] Add a product details page
+- [x] leverage NgRx Selectors for retrieving data from the Store
+- [] Leverage OnPush ChangeDetection for each of your components
+- [x] Add a product details page
 
-[x] Added footer with my name
+- [x] Added footer with my name
 
 ## Development server
 
