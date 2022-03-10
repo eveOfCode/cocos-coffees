@@ -1,5 +1,28 @@
-<h1>Coco's Coffee Distribution Co.</h1>
+<div class="container">
+  <div>
+    <h1>Coco's Coffee Distribution Co.</h1>
+    <p style="max-width: 450px">
+      Scroll down to explore all the coffee the world has to offer. Interested
+      to see more about a certain coffee? Click on a coffee item to learn more!
+    </p>
+    <button mat-raised-button color="primary">Coffee Please</button>
+  </div>
+  <div>
+    <div class="hero-image-container">
+      <img
+        src="/assets/Coffee Makes Everything Better SVG Cut File.png"
+        class="image-1"
+      />
+      <div></div>
+      <div></div>
+      <img src="/assets/socialize_with_coffee.svg" class="image-2" />
+    </div>
+  </div>
+</div>
 
+<!-- Table of coffee products -->
+<!-- <div class="table-container">
+  <h2>Browse Through our Coffee Products</h2> -->
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
     <!-- ID Column -->
@@ -32,20 +55,27 @@
       <td mat-cell *matCellDef="let coffee">{{ coffee.intensifier }}</td>
     </ng-container>
 
+    <!-- Product Detail Button Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let coffee">
+        <button mat-button [routerLink]="['/product', coffee.id]">
+          View Details
+        </button>
+      </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <app-product [coffeeProductId]="selectedCoffeeId"></app-product>
   </table>
   <!-- Pagination for the table -->
-  <!-- <mat-paginator
+  <mat-paginator
     [pageSizeOptions]="pageSizeOptions"
     [pageSize]="pageSize"
     [length]="length"
     showFirstLastButtons
     aria-label="Select page of periodic coffees"
   >
-  </mat-paginator> -->
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Select page of periodic elements">
   </mat-paginator>
 </div>

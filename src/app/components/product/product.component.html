@@ -1,1 +1,16 @@
-<p>product works!</p>
+<div class="product-detail-card">
+  <mat-card *ngIf="coffeeData">
+    <mat-card-title>{{ coffeeData.blend_name }}</mat-card-title>
+    <mat-card-subtitle>Origin: {{ coffeeData.origin }}</mat-card-subtitle>
+    <mat-card-content>
+      <h2>Details</h2>
+      <p>Notes on blend: {{ coffeeData.notes }}</p>
+      <p>Variety: {{ coffeeData.variety }}</p>
+      <p>Intensifier: {{ coffeeData.intensifier }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>ADD TO CART</button>
+      <button mat-button>FAVOURITE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
