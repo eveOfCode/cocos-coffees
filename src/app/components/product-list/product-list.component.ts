@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   length = 10;
   pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 50];
+  pageSizeOptions: number[] = [10, 25, 50];
   displayedColumns: string[] = ['id', 'blend_name', 'origin', 'variety', 'intensifier', 'action'];
 
   dataSource = new MatTableDataSource<Product>([]); // using MatTableDataSource since it can work with MatPaginator to listen for page changes
