@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,17 +7,22 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { selectAllProducts } from 'src/app/state/store.selectors';
 import { loadProducts } from 'src/app/state/store.actions';
 import { Product } from 'src/app/product.model';
+import { Observable, of, BehaviorSubject} from 'rxjs';
+// import { ChangeDetectionStrategy} from '@angular/compiler';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class ProductListComponent implements OnInit, AfterViewInit {
 
   selectedCoffeeId: number;
-  hideHeroImage = false;
+  // hideHeroImage$ = new Observable<boolean>(observer => { observer.next(false); });
+  hideHeroImage$ = new BehaviorSubject<boolean>(false);
+  // hideHeroImage = false;
 
   length = 10;
   pageSize = 10;
@@ -34,12 +39,17 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   constructor(
     private store: Store,
-    private responsive: BreakpointObserver
+    private responsive: BreakpointObserver,
+    private cd: ChangeDetectorRef
   ) { }
 
-  ngOnInit() {
-    this.store.dispatch(loadProducts());
+  currentBreakpoint(bool) {
+    this.hideHeroImage$.next(bool)
+    console.log(bool);
 
+    // this.hideHeroImage$.next(!this.hideHeroImage$.getValue())
+  }
+  applyBreakpoints() {
     // responsive response UI changes logic
     this.responsive.observe([
       Breakpoints.XSmall,
@@ -47,8 +57,16 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       Breakpoints.Medium,
     ])
       .subscribe(result => {
-        this.hideHeroImage = result.matches;
+        // this.hideHeroImage = result.matches; // will set the hideHeroImage to true or false depending on the current breakpoint
+        this.currentBreakpoint(result.matches);
+        // this.cd.markForCheck(); // call the markForCheck method to explicitely mark the view as changed after resizing window
       });
+  }
+
+  ngOnInit() {
+    this.store.dispatch(loadProducts());
+    this.applyBreakpoints();
+
   }
 
   ngAfterViewInit() {
