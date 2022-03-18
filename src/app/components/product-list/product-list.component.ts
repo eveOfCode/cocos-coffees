@@ -7,8 +7,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { selectAllProducts } from 'src/app/state/store.selectors';
 import { loadProducts } from 'src/app/state/store.actions';
 import { Product } from 'src/app/product.model';
-import { Observable, of, BehaviorSubject} from 'rxjs';
-// import { ChangeDetectionStrategy} from '@angular/compiler';
 
 @Component({
   selector: 'app-product-list',
@@ -20,9 +18,7 @@ import { Observable, of, BehaviorSubject} from 'rxjs';
 export class ProductListComponent implements OnInit, AfterViewInit {
 
   selectedCoffeeId: number;
-  // hideHeroImage$ = new Observable<boolean>(observer => { observer.next(false); });
-  hideHeroImage$ = new BehaviorSubject<boolean>(false);
-  // hideHeroImage = false;
+  hideHeroImage = false;
 
   length = 10;
   pageSize = 10;
@@ -39,34 +35,27 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   constructor(
     private store: Store,
-    private responsive: BreakpointObserver,
+    private breakpointObserver: BreakpointObserver,
     private cd: ChangeDetectorRef
   ) { }
 
-  currentBreakpoint(bool) {
-    this.hideHeroImage$.next(bool)
-    console.log(bool);
-
-    // this.hideHeroImage$.next(!this.hideHeroImage$.getValue())
-  }
   applyBreakpoints() {
-    // responsive response UI changes logic
-    this.responsive.observe([
-      Breakpoints.XSmall,
-      Breakpoints.Small,
-      Breakpoints.Medium,
+    // The observe method returns an observable of type BreakpointState and
+    // can be used to observe when the viewport changes between matching a media query or not.
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall, // (max-width: 599.98px)
+      Breakpoints.Small, // (min-width: 600px) and (max-width: 959.98px)
+      Breakpoints.Medium, // (min-width: 960px) and (max-width: 1279.98px)
     ])
-      .subscribe(result => {
-        // this.hideHeroImage = result.matches; // will set the hideHeroImage to true or false depending on the current breakpoint
-        this.currentBreakpoint(result.matches);
-        // this.cd.markForCheck(); // call the markForCheck method to explicitely mark the view as changed after resizing window
+      .subscribe(breakPointState => {
+        this.hideHeroImage = breakPointState.matches;
+        this.cd.markForCheck(); // call the markForCheck method to explicitely mark the view as changed after resizing window. This is needed to trigger the change detection.
       });
   }
 
   ngOnInit() {
     this.store.dispatch(loadProducts());
     this.applyBreakpoints();
-
   }
 
   ngAfterViewInit() {
